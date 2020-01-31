@@ -48,7 +48,6 @@ class ArrayRingBuffer:
         return list(filter(None, self.storage))
 
 # The advantages of using a Python list instead of a linked list are:
-# - in instance, the code is much cleaner
 # - accessing elements via indices is faster--const O(1) versus linear O(n) access time for linked lists
 
 # The typical disadvantages of using a Python list instead of a linked list are:
