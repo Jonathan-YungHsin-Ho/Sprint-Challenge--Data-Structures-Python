@@ -12,20 +12,9 @@ class RingBuffer:
         if len(self.storage) < self.capacity:
             self.storage.add_to_tail(item)
             self.current = self.storage.head
-
-        elif len(self.storage) == self.capacity:
-            self.current.insert_before(item)
-            self.storage.length += 1
-
-            if self.current == self.storage.head:
-                self.storage.move_to_front(self.current.prev)
-
-            if self.current == self.storage.tail:
-                self.current = self.storage.head
-                self.storage.delete(self.storage.tail)
-            else:
-                self.current = self.current.next
-                self.storage.delete(self.current.prev)
+        else:
+            self.current.value = item
+            self.current = self.storage.head if self.current == self.storage.tail else self.current.next
 
     def get(self):
         # Note:  This is the only [] allowed
@@ -46,7 +35,7 @@ class ArrayRingBuffer:
     def __init__(self, capacity):
         self.capacity = capacity
         self.oldest = 0
-        self.storage = [None] * 5
+        self.storage = [None] * capacity
 
     def append(self, item):
         if len(self.storage) < self.capacity:
