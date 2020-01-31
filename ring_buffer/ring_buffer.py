@@ -44,10 +44,26 @@ class RingBuffer:
 
 class ArrayRingBuffer:
     def __init__(self, capacity):
-        pass
+        self.capacity = capacity
+        self.oldest = 0
+        self.storage = [None] * 5
 
     def append(self, item):
-        pass
+        if len(self.storage) < self.capacity:
+            self.storage.append(item)
+        elif len(self.storage) == self.capacity:
+            self.storage[self.oldest] = item
+            self.oldest = 0 if self.oldest == self.capacity - 1 else self.oldest + 1
 
     def get(self):
-        pass
+        return list(filter(None, self.storage))
+
+# The advantages of using a Python list instead of a linked list are:
+# - in instance, the code is much cleaner
+# - accessing elements via indices is faster--const O(1) versus linear O(n) access time for linked lists
+
+# The typical disadvantages of using a Python list instead of a linked list are:
+# - fixed sizes rather than dynamic sizes
+# - insertion and deletion are expensive
+
+# The disadvantages normally found in arrays that are overcome with this arrangement are with runtime and space complexities. Typically, the runtime complexity of inserting or deleting a value at the front or in the middle of a Python list is linear O(n), since following values need to be shifted back. In this instance, however, since the inserted value replaces an existing value, no shifting of values due to insertion or deletion is needed. Additionally, since we know the length of the list from the outset, no additional space needs to be created for new elements. Since we know from the outset the capacity of the Ring Buffer, we don't have to worry about dynamic sizing.
