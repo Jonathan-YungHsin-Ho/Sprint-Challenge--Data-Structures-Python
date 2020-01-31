@@ -17,8 +17,8 @@ duplicates = []
 #         if name_1 == name_2:
 #             duplicates.append(name_1)
 
-# QUESTION: What is the runtime complexity of this code?
-# ANSWER: The runtime complexity of the nested for loop would be O(m * n), where m is the number of elements in the first list (names_1) and n is the number of elements in the second list (names_2). If we know that the two lists would always have the same number of elements n, then O(m * n) becomes O(n^2), or quadratic time.
+# RUNTIME ANALYSIS:
+# The runtime complexity of the nested for loop would be O(m * n), where m is the number of elements in the first list (names_1) and n is the number of elements in the second list (names_2). If we know that the two lists would always have the same number of elements n, then O(m * n) becomes O(n^2), or quadratic time.
 
 tree_1 = BinarySearchTree('N')
 
