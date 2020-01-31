@@ -14,7 +14,7 @@ class RingBuffer:
             self.current = self.storage.head
         else:
             self.current.value = item
-            self.current = self.storage.head if self.current == self.storage.tail else self.current.next
+            self.current = self.current.next or self.storage.head
 
     def get(self):
         # Note:  This is the only [] allowed
